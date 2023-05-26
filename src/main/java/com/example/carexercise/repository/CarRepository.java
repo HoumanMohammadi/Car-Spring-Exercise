@@ -4,6 +4,8 @@ import com.example.carexercise.model.Car;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.UUID;
 
 @Repository
 public class CarRepository {
@@ -21,4 +23,14 @@ public class CarRepository {
     public void addCar(Car carToAdd){
         cars.add(carToAdd);
     }
+
+    public Car getCatByUUID(UUID uuid){
+        for (Car car:cars){
+            if (car.getUuid().equals(uuid))
+                return car;
+        }
+        throw new NoSuchElementException("no car found");
+    }
+
+
 }
