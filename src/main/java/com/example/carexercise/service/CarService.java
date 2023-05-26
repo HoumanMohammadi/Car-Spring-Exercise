@@ -1,7 +1,7 @@
-package com.example.carexercise.service;
+package de.neuefische.mucjava231cartask.service;
 
-import com.example.carexercise.model.Car;
-import com.example.carexercise.repository.CarRepository;
+import de.neuefische.mucjava231cartask.model.Car;
+import de.neuefische.mucjava231cartask.repository.CarRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +19,28 @@ public class CarService {
         carRepository.addCar(car);
     }
 
+    /*
+    Alternative, wenn man das Objekt, welches man hinzugefügt hat,
+    wieder zurückgeben möchte:
+
+    public Car addCar(Car car){
+        return carRepository.addCar(car);
+    }
+    */
+
     public List<Car> getCars(){
         return carRepository.getCars();
+    }
+
+    public Car getCarById(String id){
+        return carRepository.getCarById(id);
+    }
+
+    public void deleteCar(String id){
+        carRepository.deleteCar(id);
+    }
+
+    public Car updateCar(String id, Car car){
+        return carRepository.updateCar(id, car);
     }
 }

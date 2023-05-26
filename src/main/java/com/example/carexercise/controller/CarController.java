@@ -1,7 +1,7 @@
-package com.example.carexercise.controller;
+package de.neuefische.mucjava231cartask.controller;
 
-import com.example.carexercise.model.Car;
-import com.example.carexercise.service.CarService;
+import de.neuefische.mucjava231cartask.model.Car;
+import de.neuefische.mucjava231cartask.service.CarService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,14 +17,37 @@ public class CarController {
     }
 
     @GetMapping
-
     public List<Car> getCars(){
         return carService.getCars();
     }
 
-    @PostMapping
-    public void addCars(@RequestBody Car carsToAdd){
-        carService.addCar(carsToAdd);
+    @GetMapping("/{id}")
+    public Car getCarById(@PathVariable String id){
+        return carService.getCarById(id);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteCar(@PathVariable String id){
+        carService.deleteCar(id);
+    }
+
+    @PutMapping("/{id}")
+    public Car updateCar(@PathVariable String id, @RequestBody Car car){
+        return carService.updateCar(id, car);
+    }
+
+    @PostMapping
+    public void addCar(@RequestBody Car car){
+        carService.addCar(car);
+    }
+
+    /*
+    Alternative, wenn man das Objekt, welches man hinzugefügt hat,
+    wieder zurückgeben möchte:
+
+    @PostMapping
+    public Car addCar(Car car){
+        return carService.addCar(car);
+    }
+    */
 }

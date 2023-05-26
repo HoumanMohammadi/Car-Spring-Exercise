@@ -1,77 +1,79 @@
-package com.example.carexercise.model;
+package de.neuefische.mucjava231cartask.model;
 
 import java.util.Objects;
-import java.util.UUID;
 
 public class Car {
 
-    private String nameOfManufacturer;
+    private String id;
+    private String brand;
+    private int amountOfTires;
+    private boolean hasTuev;
 
-    private int wheelNumber;
-
-    UUID uuid;
-
-    private boolean tuevCertified;
-
-    public Car(String nameOfManufacturer, int wheelNumber, UUID uuid, boolean tuevCertified) {
-        this.nameOfManufacturer = nameOfManufacturer;
-        this.wheelNumber = wheelNumber;
-        this.uuid = UUID.randomUUID();
-        this.tuevCertified = tuevCertified;
+    public Car(String id, String brand, int amountOfTires, boolean hasTuev) {
+        this.id = id;
+        this.brand = brand;
+        this.amountOfTires = amountOfTires;
+        this.hasTuev = hasTuev;
     }
 
-    public String getNameOfManufacturer() {
-        return nameOfManufacturer;
+    public String getId() {
+        return id;
     }
 
-    public void setNameOfManufacturer(String nameOfManufacturer) {
-        this.nameOfManufacturer = nameOfManufacturer;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public int getWheelNumber() {
-        return wheelNumber;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setWheelNumber(int wheelNumber) {
-        this.wheelNumber = wheelNumber;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
-    public boolean isTuevCertified() {
-        return tuevCertified;
+    public int getAmountOfTires() {
+        return amountOfTires;
     }
 
-    public void setTuevCertified(boolean tuevCertified) {
-        this.tuevCertified = tuevCertified;
+    public void setAmountOfTires(int amountOfTires) {
+        this.amountOfTires = amountOfTires;
     }
 
-    public UUID getUuid() {
-        return uuid;
+    public boolean isHasTuev() {
+        return hasTuev;
     }
 
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
+    public void setHasTuev(boolean hasTuev) {
+        this.hasTuev = hasTuev;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Car car = (Car) o;
-        return wheelNumber == car.wheelNumber && tuevCertified == car.tuevCertified && Objects.equals(nameOfManufacturer, car.nameOfManufacturer) && Objects.equals(uuid, car.uuid);
+
+        if (amountOfTires != car.amountOfTires) return false;
+        if (hasTuev != car.hasTuev) return false;
+        return Objects.equals(brand, car.brand);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nameOfManufacturer, wheelNumber, uuid, tuevCertified);
+        int result = brand != null ? brand.hashCode() : 0;
+        result = 31 * result + amountOfTires;
+        result = 31 * result + (hasTuev ? 1 : 0);
+        return result;
     }
 
     @Override
     public String toString() {
         return "Car{" +
-                "nameOfManufacturer='" + nameOfManufacturer + '\'' +
-                ", wheelNumber=" + wheelNumber +
-                ", uuid=" + uuid +
-                ", tuevCertified=" + tuevCertified +
+                "brand='" + brand + '\'' +
+                ", amountOfTires=" + amountOfTires +
+                ", hasTuev=" + hasTuev +
                 '}';
     }
 }
